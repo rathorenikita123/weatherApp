@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+.cityContainer {
+  padding: 5px 0;
+}
+
+.cityName {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.cityName svg {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.coord {
+  color: #555;
+  margin: 0;
+}
+
+.search {
+  height: 48px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 10px;
+  border-radius: 8px;
+  width: 300px;
+}
+
+.textbox {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  width: 80%;
+}
+
+.search button {
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.search button svg {
+  width: 20px;
+  height: 20px;
+}
