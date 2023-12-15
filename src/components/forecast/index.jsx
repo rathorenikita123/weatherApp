@@ -11,7 +11,7 @@ const Forecast = ({ coordinates: { lat, lon, sunrise, sunset } }) => {
     const fetchForecast = async () => {
       try {
         const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=3193ef1a3fddaea7c6a82f5bf545eba7`,
+          `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=3193ef1a3fddaea7c6a82f5bf545eba7`
         );
         const data = response.data.list;
         const finalData = {};
@@ -24,17 +24,19 @@ const Forecast = ({ coordinates: { lat, lon, sunrise, sunset } }) => {
           }
           finalData[date].main.temp_max = Math.max(
             d.main.temp_max,
-            finalData[date].main.temp_max,
+            finalData[date].main.temp_max
           );
           finalData[date].main.temp_min = Math.min(
             d.main.temp_min,
-            finalData[date].main.temp_min,
+            finalData[date].main.temp_min
           );
           finalData[date].main.humidity += d.main.humidity;
           finalData[date].count += 1;
         });
+        console.log(finalData, "finalData");
         const weatherData = Object.keys(finalData).map((k) => finalData[k]);
         setForecastData(weatherData);
+        console.log(weatherData, "weatherData");
       } catch (error) {
         console.error("Error fetching forecast data:", error);
         setForecastData(null);
@@ -44,6 +46,13 @@ const Forecast = ({ coordinates: { lat, lon, sunrise, sunset } }) => {
     fetchForecast();
   }, [lat, lon, sunrise, sunset]);
 
+  if (!forecastData) {
+    return (
+      <div className={styles.container}>
+        <h2>Loading...</h2>
+      </div>
+    );
+  }
   return (
     <div className={styles.container}>
       <div className={styles.labels}>
@@ -67,7 +76,7 @@ const Forecast = ({ coordinates: { lat, lon, sunrise, sunset } }) => {
               <div className={styles.icon}>
                 <img
                   src={`https://openweathermap.org/img/wn/${getWeatherIcon(
-                    forecast.weather[0].id,
+                    forecast.weather[0].id
                   )}@2x.png`}
                   alt="weather icon"
                 />

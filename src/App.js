@@ -12,14 +12,20 @@ const App = () => {
 
   const handleSearch = async () => {
     try {
+      if (!city) {
+        setCoordinates(null);
+        setCity("");
+        setWeatherData(null);
+      }
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3193ef1a3fddaea7c6a82f5bf545eba7`,
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3193ef1a3fddaea7c6a82f5bf545eba7`
       );
       setWeatherData(response.data);
       const lat = response.data.coord.lat;
       const lon = response.data.coord.lon;
       const sunrise = response.data.sys.sunrise;
       const sunset = response.data.sys.sunset;
+
       setCoordinates({ lat, lon, sunrise, sunset });
       setCity("");
     } catch (error) {
